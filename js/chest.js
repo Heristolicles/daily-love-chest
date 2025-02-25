@@ -38,7 +38,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (trigger) {
                     trigger.beginElement();
                     
-                    // Add sparkles after chest opens
+                    // Add sparkles after chest opens (reduced delay to 0.5s)
                     setTimeout(() => {
                         const sparkles = document.createElement('object');
                         sparkles.setAttribute('type', 'image/svg+xml');
@@ -62,7 +62,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             chestButton.textContent = "Komm morgen wieder 😘";
                             chestButton.disabled = true;
                         }, 1500);
-                    }, 1000);
+                    }, 500); // Reduced from 1000 to 500
                 }
             }
         });
