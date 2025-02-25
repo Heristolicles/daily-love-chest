@@ -108,21 +108,36 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
     
-
-
-    function showSavedMessage() {
-        try {
-            const savedMessage = localStorage.getItem('currentMessage');
-            if (savedMessage) {
-                displayMessage(savedMessage);
-            }
-        } catch (error) {
-            console.error('Error accessing saved message:', error);
-        }
-    }
-    
     function displayMessage(message) {
         messageDisplay.textContent = message;
         messageDisplay.classList.remove('hidden');
     }
+
+    const chest = document.getElementById('chest');
+    const messageDisplay = document.getElementById('message-display');
+    const chestButton = document.getElementById('chest-button');
+
+    let isOpen = false;
+
+    function openChest() {
+        if (!isOpen) {
+            // Replace closed chest with open chest
+            chest.innerHTML = `
+                <object id="chest-svg" type="image/svg+xml" data="assets/chest-open.svg"></object>
+            `;
+            isOpen = true;
+            messageDisplay.classList.remove('hidden');
+            messageDisplay.classList.add('message-reveal');
+            
+            // Add sparkles
+            const sparkles = document.createElement('div');
+            sparkles.className = 'sparkles active';
+            sparkles.innerHTML = `
+                <object type="image/svg+xml" data="assets/sparkles.svg"></object>
+            `;
+            chest.appendChild(sparkles);
+        }
+    }
+
+    chestButton.addEventListener('click', openChest);
 });

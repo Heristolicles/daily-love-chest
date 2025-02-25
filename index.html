@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/main.css">
     <link rel="stylesheet" href="css/animations.css">
@@ -19,14 +18,19 @@
     <title>Daily Love Chest</title>
 </head>
 <body>
-    <div id="app">
-        <h1>Öffne deinen Liebesschatz</h1>
-        <div id="chest-container">
-            <img id="chest" src="assets/chest-closed.svg" alt="Closed Chest">
-            <img id="sparkles" class="sparkles" src="assets/sparkles.svg" alt="Sparkles">
-            <div id="message-display" class="hidden"></div>
+    <div class="container">
+        <div id="app">
+            <h1>Daily Love Chest</h1>
+            <div id="chest-container">
+                <div id="chest">
+                    <object id="chest-svg" type="image/svg+xml" data="assets/chest-closed.svg"></object>
+                </div>
+                <div id="message-display" class="hidden">
+                    <!-- Message content will be added dynamically -->
+                </div>
+            </div>
+            <button id="chest-button">Open Chest</button>
         </div>
-        <button id="chest-button">Schatz Öffnen</button>
     </div>
     <script src="js/storage.js"></script>
     <script src="js/messages.js"></script>
