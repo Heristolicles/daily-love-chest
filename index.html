@@ -8,6 +8,10 @@
     <link rel="stylesheet" href="css/animations.css">
     <link rel="stylesheet" href="css/responsive.css">
     <link rel="manifest" href="public/manifest.json">
+    <meta name="theme-color" content="#ff4e50">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <link rel="apple-touch-icon" href="public/favicon.svg">
     <title>Daily Love Chest</title>
 </head>
 <body>
@@ -29,7 +33,7 @@
     <script>
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
-                navigator.serviceWorker.register('./public/serviceWorker.js')
+                navigator.serviceWorker.register('./serviceWorker.js')
                     .then(registration => {
                         console.log('Service Worker registered successfully:', registration);
                     })
