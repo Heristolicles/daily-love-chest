@@ -1,6 +1,13 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100">
-  <circle cx="50" cy="50" r="45" fill="none" stroke="#FFD700" stroke-width="5" />
-  <circle cx="50" cy="50" r="30" fill="none" stroke="#FFD700" stroke-width="5" />
-  <path d="M50 10 L55 30 L75 30 L58 45 L65 70 L50 55 L35 70 L42 45 L25 30 L45 30 Z" fill="#FFD700" />
-  <path d="M50 20 L52 30 L60 30 L53 40 L55 50 L50 45 L45 50 L47 40 L40 30 L48 30 Z" fill="#FFD700" />
+<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 24 24">
+    <g fill="none" stroke="#FFD700" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 3l1.5 3.5L17 8l-3.5 1.5L12 13l-1.5-3.5L7 8l3.5-1.5L12 3z">
+            <animate attributeName="opacity" values="0;1;0" dur="2s" repeatCount="indefinite"/>
+        </path>
+        <path d="M5 17l1 2l2 1l-2 1l-1 2l-1-2l-2-1l2-1l1-2z" transform="translate(2,0)">
+            <animate attributeName="opacity" values="0;1;0" dur="1.5s" repeatCount="indefinite" begin="0.5s"/>
+        </path>
+        <path d="M18 17l1 2l2 1l-2 1l-1 2l-1-2l-2-1l2-1l1-2z">
+            <animate attributeName="opacity" values="0;1;0" dur="1.8s" repeatCount="indefinite" begin="1s"/>
+        </path>
+    </g>
 </svg>

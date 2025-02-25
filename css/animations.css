@@ -1,9 +1,11 @@
 @keyframes openChest {
     0% {
-        transform: rotateX(0deg);
+        transform: perspective(800px) rotateX(0);
+        transform-origin: center top;
     }
     100% {
-        transform: rotateX(-60deg);
+        transform: perspective(800px) rotateX(-110deg);
+        transform-origin: center top;
     }
 }
 
@@ -34,8 +36,7 @@
 }
 
 .chest-opening {
-    transform-origin: bottom;
-    animation: openChest 1s forwards;
+    animation: openChest 1.5s ease-out forwards;
 }
 
 .message-reveal {
