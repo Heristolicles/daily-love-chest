@@ -1,4 +1,4 @@
-const CACHE_NAME = 'daily-love-chest-v1';
+const CACHE_NAME = 'love-chest-v1';
 
 // Assets to cache
 const ASSETS_TO_CACHE = [
@@ -7,15 +7,13 @@ const ASSETS_TO_CACHE = [
     './css/main.css',
     './css/animations.css',
     './css/responsive.css',
-    './js/app.js',
-    './js/chest.js',
     './js/storage.js',
     './js/messages.js',
+    './js/chest.js',
+    './js/background.js',
     './assets/chest-closed.svg',
     './assets/chest-open.svg',
-    './assets/sparkles.svg',
-    './public/favicon.svg',
-    './public/manifest.json'
+    './assets/sparkles.svg'
 ];
 
 // Install event - cache assets
@@ -26,7 +24,7 @@ self.addEventListener('install', event => {
                 console.log('Caching app assets');
                 return cache.addAll(ASSETS_TO_CACHE);
             })
-            .then(() => self.skipWaiting())
+            .catch(error => console.log('Cache error:', error))
     );
 });
 

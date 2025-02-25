@@ -38,15 +38,25 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (trigger) {
                     trigger.beginElement();
                     
-                    // Add sparkles after chest opens (reduced delay to 0.5s)
+                    // Add sparkles with fixed positioning
                     setTimeout(() => {
+                        const sparklesContainer = document.createElement('div');
+                        sparklesContainer.className = 'sparkles';
+                        
                         const sparkles = document.createElement('object');
                         sparkles.setAttribute('type', 'image/svg+xml');
                         sparkles.setAttribute('data', 'assets/sparkles.svg');
-                        sparkles.className = 'sparkles active';
-                        chestContainer.appendChild(sparkles);
+                        sparkles.className = 'sparkles-svg';
                         
-                        // Show message after sparkles
+                        sparklesContainer.appendChild(sparkles);
+                        chestContainer.appendChild(sparklesContainer);
+                        
+                        // Add active class after a brief delay to trigger animation
+                        requestAnimationFrame(() => {
+                            sparklesContainer.classList.add('active');
+                        });
+                        
+                        // Show message
                         setTimeout(() => {
                             const message = getDailyMessage();
                             messageDisplay.textContent = message;
