@@ -39,24 +39,33 @@ document.addEventListener('DOMContentLoaded', () => {
                     trigger.beginElement();
                 }
             }
-        });
 
-        // Show message after animation
-        setTimeout(() => {
-            const message = getDailyMessage();
-            messageDisplay.textContent = message;
-            messageDisplay.classList.remove('hidden');
-            messageDisplay.classList.add('message-reveal');
-            
-            // Save state
-            localStorage.setItem('lastOpenedDate', new Date().toDateString());
-            localStorage.setItem('currentMessage', message);
-            localStorage.setItem('chestOpen', 'true');
-            
-            // Update button state
-            chestButton.textContent = "Opened for Today";
-            chestButton.disabled = true;
-        }, 1000);
+            // Add sparkles after chest starts opening
+            setTimeout(() => {
+                const sparkles = document.createElement('object');
+                sparkles.setAttribute('type', 'image/svg+xml');
+                sparkles.setAttribute('data', 'assets/sparkles.svg');
+                sparkles.className = 'sparkles active';
+                chestContainer.appendChild(sparkles);
+                
+                // Show message after sparkles
+                setTimeout(() => {
+                    const message = getDailyMessage();
+                    messageDisplay.textContent = message;
+                    messageDisplay.classList.remove('hidden');
+                    messageDisplay.classList.add('message-reveal');
+                    
+                    // Save state
+                    localStorage.setItem('lastOpenedDate', new Date().toDateString());
+                    localStorage.setItem('currentMessage', message);
+                    localStorage.setItem('chestOpen', 'true');
+                    
+                    // Update button state
+                    chestButton.textContent = "Opened for Today";
+                    chestButton.disabled = true;
+                }, 1000); // 1 second delay after sparkles
+            }, 500); // Add sparkles after 0.5s
+        });
     }
     
     function loadChestState() {
