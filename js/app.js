@@ -39,4 +39,17 @@ document.addEventListener('DOMContentLoaded', () => {
         ];
         return messages[Math.floor(Math.random() * messages.length)];
     }
+
+    // Check if the element exists before setting properties
+    const element = document.getElementById('your-element-id');
+    if (element) {
+        element.disabled = true; // or whatever you're trying to do
+    }
+    
+    // Add console.log to debug which element is missing
+    console.log('Elements check:', {
+        button: document.getElementById('chest-button'),
+        message: document.getElementById('message-display'),
+        chest: document.getElementById('chest')
+    });
 });

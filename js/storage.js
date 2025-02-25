@@ -28,5 +28,3 @@ function canOpenChest() {
     const today = new Date();
     return lastOpenedDate.toDateString() !== today.toDateString();
 }
-
-export { getMessages, saveMessages, getLastOpenedDate, setLastOpenedDate, canOpenChest };

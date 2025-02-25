@@ -36,4 +36,5 @@ function getDailyMessage() {
     }
 }
 
-export { getDailyMessage };
+// Remove export and make it globally available
+// export { getDailyMessage };
