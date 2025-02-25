@@ -59,7 +59,7 @@ document.addEventListener('DOMContentLoaded', () => {
                             localStorage.setItem('chestOpen', 'true');
                             
                             // Update button state
-                            chestButton.textContent = "Opened for Today";
+                            chestButton.textContent = "Komm morgen wieder 😘";
                             chestButton.disabled = true;
                         }, 1500);
                     }, 1000);
@@ -77,7 +77,7 @@ document.addEventListener('DOMContentLoaded', () => {
             // Restore open state
             chestClosed.classList.add('hidden');
             chestOpen.classList.remove('hidden');
-            chestButton.textContent = "Opened for Today";
+            chestButton.textContent = "Komm morgen wieder 😘";
             chestButton.disabled = true;
             showSavedMessage();
         } else {
@@ -85,7 +85,7 @@ document.addEventListener('DOMContentLoaded', () => {
             chestClosed.classList.remove('hidden');
             chestOpen.classList.add('hidden');
             messageDisplay.classList.add('hidden');
-            chestButton.textContent = "Open Chest";
+            chestButton.textContent = "Schatz öffnen";
             chestButton.disabled = false;
             
             if (lastOpened !== today) {
