@@ -5,19 +5,37 @@
           stroke="#3D2314" 
           stroke-width="1"/>
     
-    <!-- Chest lid (hinged at back) -->
-    <g transform-origin="12 9">
+    <!-- Animated lid group -->
+    <g id="lid-group">
         <path d="M3 9l2.5-4h13L21 9" 
               fill="#A0522D" 
               stroke="#3D2314" 
               stroke-width="1">
+            <animate id="chest-trigger"
+                    attributeName="transform"
+                    attributeType="XML"
+                    type="rotate"
+                    from="0 12 9"
+                    to="-110 12 9"
+                    dur="1s"
+                    fill="freeze"
+                    begin="indefinite"/>
         </path>
         
         <!-- Lock -->
-        <rect x="10" y="7" 
+        <rect x="10" y="10" 
               width="4" height="2" 
               fill="#FFD700" 
-              stroke="#B8860B"/>
+              stroke="#B8860B">
+            <animate attributeName="transform"
+                    attributeType="XML"
+                    type="rotate"
+                    from="0 12 9"
+                    to="-110 12 9"
+                    dur="1s"
+                    fill="freeze"
+                    begin="chest-trigger.begin"/>
+        </rect>
     </g>
     
     <!-- Glowing interior -->
