@@ -41,68 +41,26 @@ h1 {
 
 #chest-container {
     position: relative;
-    perspective: 1000px;
-    width: 120px;  /* Reduced from 200px */
-    height: 120px; /* Reduced from 160px */
-    margin: 0 auto 30px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    overflow: visible; /* Ensure sparkles are visible */
-}
-
-#chest-container {
-    position: relative;
     width: 120px;
     height: 120px;
     margin: 0 auto 30px;
     display: flex;
     align-items: center;
     justify-content: center;
-    overflow: visible;
 }
 
 #chest {
     position: relative;
-    width: 100%;
-    height: 100%;
-    transform-style: preserve-3d;
-    transition: transform 0.5s ease;
-    color: #8B4513; /* For the SVG currentColor */
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#chest {
-    width: 100%;
-    height: 100%;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-#chest object {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    width: 120px;
+    height: 120px;
 }
 
 #chest object {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0;
     left: 0;
-}
-
-.chest:hover {
-    transform: scale(1.05);
+    top: 0;
 }
 
 #message-display {
@@ -110,18 +68,17 @@ h1 {
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    z-index: 20;
+    z-index: 10;
     background-color: rgba(255, 255, 255, 0.95);
     padding: 15px 20px;
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    max-width: 180px;
-    width: max-content;
+    max-width: 80%;
+    width: auto;
     border: 2px solid #ff4e50;
     font-size: 1rem;
     line-height: 1.4;
-    margin: 0;
     pointer-events: none;
 }
 
@@ -168,7 +125,7 @@ h1 {
 }
 
 .hidden {
-    display: none;
+    display: none !important;
 }
 
 /* Add styling for the sparkles */
@@ -176,8 +133,8 @@ h1 {
     position: absolute;
     width: 120px;
     height: 120px;
-    top: 0;
     left: 0;
+    top: 0;
     right: 0;
     bottom: 0;
     margin: auto;
@@ -186,22 +143,5 @@ h1 {
 }
 
 .message-reveal {
-    animation: messageReveal 1.5s ease-out forwards;
-    opacity: 0;
-}
-
-.hearts-background {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    pointer-events: none;
-    z-index: -1;
-    overflow: hidden;
-}
-
-.heart {
-    position: fixed;
-    transition: opacity 0.3s ease;
+    animation: messageReveal 1s ease-out forwards;
 }
