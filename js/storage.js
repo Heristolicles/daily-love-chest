@@ -19,12 +19,40 @@ function setLastOpenedDate(date) {
     localStorage.setItem(LAST_OPENED_KEY, date);
 }
 
+// Check if the chest can be opened today
 function canOpenChest() {
-    const lastOpened = getLastOpenedDate();
+    const lastOpened = localStorage.getItem('lastOpenedDate');
+    
     if (!lastOpened) {
         return true;
     }
-    const lastOpenedDate = new Date(lastOpened);
-    const today = new Date();
-    return lastOpenedDate.toDateString() !== today.toDateString();
+    
+    const today = new Date().toDateString();
+    return today !== lastOpened;
+}
+
+// Save the date when the chest was last opened
+function setLastOpenedDate(date) {
+    localStorage.setItem('lastOpenedDate', date);
+}
+
+// Get the index of the last shown message
+function getLastMessageIndex() {
+    const index = localStorage.getItem('lastMessageIndex');
+    return index ? parseInt(index) : -1;
+}
+
+// Save the index of the last shown message
+function setLastMessageIndex(index) {
+    localStorage.setItem('lastMessageIndex', index);
+}
+
+// Get the last message that was shown
+function getLastMessage() {
+    return localStorage.getItem('lastShownMessage') || "";
+}
+
+// Save the last message that was shown
+function setLastMessage(message) {
+    localStorage.setItem('lastShownMessage', message);
 }
