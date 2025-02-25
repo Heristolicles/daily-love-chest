@@ -63,6 +63,19 @@ h1 {
     color: #8B4513; /* For the SVG currentColor */
 }
 
+#chest img {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#chest-open {
+    opacity: 1;
+    transition: opacity 0.3s ease;
+}
+
 #chest-svg {
     width: 100%;
     height: 100%;

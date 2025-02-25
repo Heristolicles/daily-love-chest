@@ -5,6 +5,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const sparklesImage = document.getElementById('sparkles');
     const messageDisplay = document.getElementById('message-display');
     const chestButton = document.getElementById('chest-button');
+    const chestClosed = document.getElementById('chest-closed');
+    const chestOpen = document.getElementById('chest-open');
     
     // Check if chest is already open today
     loadChestState();
@@ -27,14 +29,27 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function openChestWithAnimation() {
-        const chest = document.getElementById('chest');
-        if (chest && chest.contentDocument) {
-            const svgDoc = chest.contentDocument;
-            const trigger = svgDoc.getElementById('chest-trigger');
+        // Hide closed chest, show open chest
+        chestClosed.classList.add('hidden');
+        chestOpen.classList.remove('hidden');
+
+        // Trigger the animation
+        const openChestSvg = chestOpen.contentDocument;
+        if (openChestSvg) {
+            const trigger = openChestSvg.getElementById('chest-trigger');
             if (trigger) {
                 trigger.beginElement();
             }
         }
+
+        // Disable the button
+        chestButton.disabled = true;
+
+        // Show message after a delay
+        setTimeout(() => {
+            messageDisplay.classList.remove('hidden');
+            messageDisplay.classList.add('message-reveal');
+        }, 1000);
 
         // Change button text
         chestButton.textContent = "Opened for Today";
