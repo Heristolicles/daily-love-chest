@@ -27,6 +27,15 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function openChestWithAnimation() {
+        const chest = document.getElementById('chest');
+        if (chest && chest.contentDocument) {
+            const svgDoc = chest.contentDocument;
+            const trigger = svgDoc.getElementById('chest-trigger');
+            if (trigger) {
+                trigger.beginElement();
+            }
+        }
+
         // Change button text
         chestButton.textContent = "Opened for Today";
         chestButton.disabled = true;

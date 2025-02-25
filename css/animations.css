@@ -23,15 +23,15 @@
 @keyframes sparkle {
     0% {
         opacity: 0;
-        transform: scale(0.8);
+        transform: scale(0.8) translateY(0);
     }
     50% {
         opacity: 1;
-        transform: scale(1.1);
+        transform: scale(1.2) translateY(-20px);
     }
     100% {
         opacity: 0;
-        transform: scale(0.8);
+        transform: scale(0.8) translateY(-40px);
     }
 }
 
@@ -46,18 +46,14 @@
 
 .sparkles {
     position: absolute;
-    top: 0;
-    left: 0;
     width: 100%;
     height: 100%;
     pointer-events: none;
-    z-index: 10;
     opacity: 0;
 }
 
-.sparkles-animate {
+.sparkles.active {
     animation: sparkle 2s ease-out forwards;
-    animation-iteration-count: infinite; /* Ensure continuous animation */
 }
 
 .hidden {
