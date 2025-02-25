@@ -1,6 +1,13 @@
 // This file contains the main JavaScript code for the Daily Love Chest application.
 
 document.addEventListener('DOMContentLoaded', () => {
+    // Debug which elements exist
+    console.log("Elements check:", {
+        chestButton: document.getElementById('chest-button'),
+        messageDisplay: document.getElementById('message-display'),
+        chest: document.getElementById('chest')
+    });
+
     const chestButton = document.getElementById('chest-button');
     const messageDisplay = document.getElementById('message-display');
     const lastOpenedDate = localStorage.getItem('lastOpenedDate');
@@ -38,6 +45,14 @@ document.addEventListener('DOMContentLoaded', () => {
             "You make my heart sparkle!"
         ];
         return messages[Math.floor(Math.random() * messages.length)];
+    }
+
+    // Line 13 that's causing the error - add a null check
+    const elementCausingError = document.getElementById('element-id-here'); // Replace with actual ID
+    if (elementCausingError) {
+        elementCausingError.disabled = true;
+    } else {
+        console.warn("Element not found in the DOM:", 'element-id-here');
     }
 
     // Check if the element exists before setting properties
