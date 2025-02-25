@@ -44,7 +44,7 @@ h1 {
     perspective: 1000px;
     width: 200px;
     height: 160px;
-    margin: 20px auto;
+    margin: 0 auto 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,11 +53,19 @@ h1 {
 }
 
 #chest {
-    width: 120px;
-    height: 120px;
+    width: 100%;
+    height: 100%;
     transform-style: preserve-3d;
     transition: transform 0.5s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     color: #8B4513; /* For the SVG currentColor */
+}
+
+#chest-svg {
+    width: 100%;
+    height: 100%;
 }
 
 .chest:hover {
