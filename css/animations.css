@@ -25,7 +25,11 @@
         opacity: 0;
         transform: scale(0.8) translateY(0);
     }
-    50% {
+    20% {
+        opacity: 1;
+        transform: scale(1.2) translateY(-20px);
+    }
+    80% {
         opacity: 1;
         transform: scale(1.2) translateY(-20px);
     }
@@ -39,9 +43,19 @@
     animation: openChest 1.5s ease-out forwards;
 }
 
+@keyframes messageReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
 .message-reveal {
-    animation: fadeIn 1.5s ease-out forwards;
-    animation-delay: 0.8s;
+    animation: messageReveal 1s ease-out forwards;
 }
 
 .sparkles {
@@ -53,7 +67,7 @@
 }
 
 .sparkles.active {
-    animation: sparkle 2s ease-out forwards;
+    animation: sparkle 4s ease-out forwards;
 }
 
 .hidden {

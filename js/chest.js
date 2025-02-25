@@ -27,50 +27,37 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function openChestWithAnimation() {
-        const chest = document.getElementById('chest');
-        if (chest && chest.contentDocument) {
-            const svgDoc = chest.contentDocument;
-            const trigger = svgDoc.getElementById('chest-trigger');
-            if (trigger) {
-                trigger.beginElement();
-            }
-        }
-
-        // Change button text
-        chestButton.textContent = "Opened for Today";
-        chestButton.disabled = true;
+        const chestButton = document.getElementById('chest-button');
+        const messageDisplay = document.getElementById('message-display');
+        const sparklesElement = document.getElementById('sparkles');
         
-        // Change chest image to open
-        chestImage.src = "assets/chest-open.svg";
-        
-        // Show sparkles with animation
-        sparklesImage.classList.remove('hidden');
-        sparklesImage.classList.add('active');
-        
-        // Get a random message - try both function names for compatibility
-        let message;
-        if (typeof getDailyMessage === 'function') {
-            message = getDailyMessage();
-        } else if (typeof getRandomLoveMessage === 'function') {
-            message = getRandomLoveMessage();
-        } else {
-            message = "I love you!"; // Default fallback
+        // Disable button immediately
+        if (chestButton) {
+            chestButton.disabled = true;
+            chestButton.textContent = "Opened for Today";
         }
         
-        // Save today's data
-        try {
-            const today = new Date().toDateString();
-            localStorage.setItem('lastOpenedDate', today);
-            localStorage.setItem('currentMessage', message);
-            localStorage.setItem('chestOpen', 'true');
-        } catch (error) {
-            console.error('Error saving to localStorage:', error);
+        // Show sparkles first
+        if (sparklesElement) {
+            sparklesElement.classList.remove('hidden');
+            sparklesElement.classList.add('active');
         }
         
-        // Show message with slight delay for animation effect
+        // Get message but wait to display it
+        const message = getDailyMessage();
+        
+        // Show message after delay
         setTimeout(() => {
-            displayMessage(message);
-        }, 800);
+            if (messageDisplay) {
+                messageDisplay.textContent = message;
+                messageDisplay.classList.remove('hidden');
+                messageDisplay.classList.add('message-reveal');
+            }
+            
+            // Save state after message is shown
+            setLastOpenedDate(new Date().toDateString());
+            setLastMessage(message);
+        }, 2000); // 2 second delay for message
     }
     
     function loadChestState() {
