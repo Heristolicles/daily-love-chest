@@ -54,6 +54,8 @@ document.addEventListener('DOMContentLoaded', () => {
                         setTimeout(() => {
                             const message = getDailyMessage();
                             if (message) {
+                                messageDisplay.style.width = '250px';
+                                messageDisplay.style.maxWidth = '250px';
                                 messageDisplay.textContent = message;
                                 messageDisplay.classList.remove('hidden');
                                 messageDisplay.classList.add('message-reveal');
@@ -103,6 +105,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function showSavedMessage() {
         const savedMessage = localStorage.getItem('currentMessage');
         if (savedMessage) {
+            messageDisplay.style.width = '250px';
+            messageDisplay.style.maxWidth = '250px';
             messageDisplay.textContent = savedMessage;
             messageDisplay.classList.remove('hidden');
             messageDisplay.classList.add('message-reveal');
