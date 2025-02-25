@@ -33,6 +33,26 @@ const loveMessages = [
     "Every day with you is an adventure I cherish."
 ];
 
+// Helper function to get the last message index from localStorage
+function getLastMessageIndex() {
+    try {
+        const index = localStorage.getItem('lastMessageIndex');
+        return index !== null ? parseInt(index, 10) : -1;
+    } catch (error) {
+        console.error('Error accessing localStorage:', error);
+        return -1;
+    }
+}
+
+// Helper function to save the last message index to localStorage
+function setLastMessageIndex(index) {
+    try {
+        localStorage.setItem('lastMessageIndex', index.toString());
+    } catch (error) {
+        console.error('Error saving to localStorage:', error);
+    }
+}
+
 // Function to get a message based on the day but ensure we don't repeat until all messages are shown
 function getDailyMessage() {
     // Get the last index
@@ -59,4 +79,9 @@ function getDailyMessage() {
     setLastMessageIndex(selectedIndex);
     
     return loveMessages[selectedIndex];
+}
+
+// Add an alias for the function to ensure compatibility
+function getRandomLoveMessage() {
+    return getDailyMessage();
 }
