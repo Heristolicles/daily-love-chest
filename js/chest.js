@@ -30,33 +30,44 @@ document.addEventListener('DOMContentLoaded', () => {
         chestClosed.classList.add('hidden');
         chestOpen.classList.remove('hidden');
         
-        // Add sparkles
-        const sparkles = document.createElement('div');
-        sparkles.className = 'sparkles';
-        sparkles.innerHTML = `<object type="image/svg+xml" data="assets/sparkles.svg"></object>`;
-        chestContainer.appendChild(sparkles);
-        
-        // Trigger sparkles animation after a short delay
+        // Trigger the SVG animation
         setTimeout(() => {
-            sparkles.classList.add('active');
-        }, 100);
-
-        // Update button state
-        chestButton.textContent = "Opened for Today";
-        chestButton.disabled = true;
-        
-        // Get and show message after animation
-        const message = getDailyMessage();
-        setTimeout(() => {
-            messageDisplay.textContent = message;
-            messageDisplay.classList.remove('hidden');
-            messageDisplay.classList.add('message-reveal');
+            const openChestSvg = chestOpen.contentDocument;
+            if (openChestSvg) {
+                const trigger = openChestSvg.getElementById('chest-trigger');
+                if (trigger) {
+                    trigger.beginElement();
+                }
+            }
             
-            // Save state
-            localStorage.setItem('lastOpenedDate', new Date().toDateString());
-            localStorage.setItem('currentMessage', message);
-            localStorage.setItem('chestOpen', 'true');
-        }, 1000);
+            // Add sparkles
+            const sparkles = document.createElement('div');
+            sparkles.className = 'sparkles';
+            sparkles.innerHTML = `<object type="image/svg+xml" data="assets/sparkles.svg"></object>`;
+            chestContainer.appendChild(sparkles);
+            
+            // Trigger sparkles animation
+            setTimeout(() => {
+                sparkles.classList.add('active');
+            }, 100);
+
+            // Show message after chest opens
+            setTimeout(() => {
+                const message = getDailyMessage();
+                messageDisplay.textContent = message;
+                messageDisplay.classList.remove('hidden');
+                messageDisplay.classList.add('message-reveal');
+                
+                // Save state
+                localStorage.setItem('lastOpenedDate', new Date().toDateString());
+                localStorage.setItem('currentMessage', message);
+                localStorage.setItem('chestOpen', 'true');
+            }, 1000);
+
+            // Update button state
+            chestButton.textContent = "Opened for Today";
+            chestButton.disabled = true;
+        }, 100);
     }
     
     function loadChestState() {
