@@ -14,7 +14,7 @@
             <animateTransform attributeName="transform"
                               type="rotate"
                               from="0 12 9"
-                              to="-110 12 9"
+                              to="-90 12 9"
                               dur="1.5s"
                               fill="freeze"/>
         </path>

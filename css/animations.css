@@ -57,6 +57,7 @@
 
 .sparkles-animate {
     animation: sparkle 2s ease-out forwards;
+    animation-iteration-count: infinite; /* Ensure continuous animation */
 }
 
 .hidden {
