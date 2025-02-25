@@ -27,9 +27,25 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function openChestWithAnimation() {
-        const chestButton = document.getElementById('chest-button');
-        const messageDisplay = document.getElementById('message-display');
-        const sparklesElement = document.getElementById('sparkles');
+        const chest = document.getElementById('chest');
+        if (chest && chest.contentDocument) {
+            const svgDoc = chest.contentDocument;
+            const trigger = svgDoc.getElementById('chest-trigger');
+            if (trigger) {
+                trigger.beginElement();
+            }
+        }
+
+        // Change button text
+        chestButton.textContent = "Opened for Today";
+        chestButton.disabled = true;
+        
+        // Change chest image to open
+        chestImage.src = "assets/chest-open.svg";
+        
+        // Show sparkles with animation
+        sparklesImage.classList.remove('hidden');
+        sparklesImage.classList.add('active');
         
         // Disable button immediately
         if (chestButton) {
