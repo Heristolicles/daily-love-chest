@@ -1,8 +1,8 @@
 document.addEventListener('DOMContentLoaded', () => {
     console.log("Chest.js loaded");
     
-    const chestImage = document.getElementById('chest');
-    const sparklesImage = document.getElementById('sparkles');
+    // DOM Elements
+    const chestContainer = document.getElementById('chest-container');
     const messageDisplay = document.getElementById('message-display');
     const chestButton = document.getElementById('chest-button');
     const chestClosed = document.getElementById('chest-closed');
@@ -17,14 +17,11 @@ document.addEventListener('DOMContentLoaded', () => {
         const today = new Date().toDateString();
         const lastOpened = localStorage.getItem('lastOpenedDate');
         
-        // Allow opening once per day
         if (lastOpened === today) {
-            // Already opened today, just show the saved message
             showSavedMessage();
             return;
         }
         
-        // Open chest with animation and show new message
         openChestWithAnimation();
     }
     
@@ -32,143 +29,69 @@ document.addEventListener('DOMContentLoaded', () => {
         // Hide closed chest, show open chest
         chestClosed.classList.add('hidden');
         chestOpen.classList.remove('hidden');
-
-        // Trigger the animation
-        const openChestSvg = chestOpen.contentDocument;
-        if (openChestSvg) {
-            const trigger = openChestSvg.getElementById('chest-trigger');
-            if (trigger) {
-                trigger.beginElement();
-            }
-        }
-
-        // Disable the button
-        chestButton.disabled = true;
-
-        // Show message after a delay
+        
+        // Add sparkles
+        const sparkles = document.createElement('div');
+        sparkles.className = 'sparkles';
+        sparkles.innerHTML = `<object type="image/svg+xml" data="assets/sparkles.svg"></object>`;
+        chestContainer.appendChild(sparkles);
+        
+        // Trigger sparkles animation after a short delay
         setTimeout(() => {
-            messageDisplay.classList.remove('hidden');
-            messageDisplay.classList.add('message-reveal');
-        }, 1000);
+            sparkles.classList.add('active');
+        }, 100);
 
-        // Change button text
+        // Update button state
         chestButton.textContent = "Opened for Today";
         chestButton.disabled = true;
         
-        // Change chest image to open
-        chestImage.src = "assets/chest-open.svg";
-        
-        // Show sparkles with animation
-        sparklesImage.classList.remove('hidden');
-        sparklesImage.classList.add('active');
-        
-        // Disable button immediately
-        if (chestButton) {
-            chestButton.disabled = true;
-            chestButton.textContent = "Opened for Today";
-        }
-        
-        // Show sparkles first
-        if (sparklesElement) {
-            sparklesElement.classList.remove('hidden');
-            sparklesElement.classList.add('active');
-        }
-        
-        // Get message but wait to display it
+        // Get and show message after animation
         const message = getDailyMessage();
-        
-        // Show message after delay
         setTimeout(() => {
-            if (messageDisplay) {
-                messageDisplay.textContent = message;
-                messageDisplay.classList.remove('hidden');
-                messageDisplay.classList.add('message-reveal');
-            }
-            
-            // Save state after message is shown
-            setLastOpenedDate(new Date().toDateString());
-            setLastMessage(message);
-        }, 2000); // 2 second delay for message
-    }
-    
-    function loadChestState() {
-        try {
-            const today = new Date().toDateString();
-            const lastOpened = localStorage.getItem('lastOpenedDate');
-            const chestOpen = localStorage.getItem('chestOpen') === 'true';
-            
-            if (lastOpened === today && chestOpen) {
-                // If chest was opened today, restore the open state
-                chestImage.src = "assets/chest-open.svg";
-                chestButton.textContent = "Opened for Today";
-                chestButton.disabled = true;
-                
-                // Show saved message
-                showSavedMessage();
-            } else {
-                // Reset for a new day
-                chestImage.src = "assets/chest-closed.svg";
-                sparklesImage.classList.add('hidden');
-                sparklesImage.classList.remove('active');
-                messageDisplay.classList.add('hidden');
-                chestButton.textContent = "Open Chest";
-                chestButton.disabled = false;
-                
-                // Clear any previous state
-                if (lastOpened !== today) {
-                    localStorage.removeItem('chestOpen');
-                    localStorage.removeItem('currentMessage');
-                }
-            }
-        } catch (error) {
-            console.error('Error accessing localStorage:', error);
-            // Reset to default state on error
-            chestImage.src = "assets/chest-closed.svg";
-            chestButton.textContent = "Open Chest";
-        }
-    }
-    // Function to show the saved message if available
-    function showSavedMessage() {
-        try {
-            const savedMessage = localStorage.getItem('currentMessage');
-            if (savedMessage) {
-                displayMessage(savedMessage);
-            }
-        } catch (error) {
-            console.error('Error accessing saved message:', error);
-        }
-    }
-    
-    function displayMessage(message) {
-        messageDisplay.textContent = message;
-        messageDisplay.classList.remove('hidden');
-    }
-
-    const chest = document.getElementById('chest');
-    const messageDisplay = document.getElementById('message-display');
-    const chestButton = document.getElementById('chest-button');
-
-    let isOpen = false;
-
-    function openChest() {
-        if (!isOpen) {
-            // Replace closed chest with open chest
-            chest.innerHTML = `
-                <object id="chest-svg" type="image/svg+xml" data="assets/chest-open.svg"></object>
-            `;
-            isOpen = true;
+            messageDisplay.textContent = message;
             messageDisplay.classList.remove('hidden');
             messageDisplay.classList.add('message-reveal');
             
-            // Add sparkles
-            const sparkles = document.createElement('div');
-            sparkles.className = 'sparkles active';
-            sparkles.innerHTML = `
-                <object type="image/svg+xml" data="assets/sparkles.svg"></object>
-            `;
-            chest.appendChild(sparkles);
+            // Save state
+            localStorage.setItem('lastOpenedDate', new Date().toDateString());
+            localStorage.setItem('currentMessage', message);
+            localStorage.setItem('chestOpen', 'true');
+        }, 1000);
+    }
+    
+    function loadChestState() {
+        const today = new Date().toDateString();
+        const lastOpened = localStorage.getItem('lastOpenedDate');
+        const chestIsOpen = localStorage.getItem('chestOpen') === 'true';
+        
+        if (lastOpened === today && chestIsOpen) {
+            // Restore open state
+            chestClosed.classList.add('hidden');
+            chestOpen.classList.remove('hidden');
+            chestButton.textContent = "Opened for Today";
+            chestButton.disabled = true;
+            showSavedMessage();
+        } else {
+            // Reset for new day
+            chestClosed.classList.remove('hidden');
+            chestOpen.classList.add('hidden');
+            messageDisplay.classList.add('hidden');
+            chestButton.textContent = "Open Chest";
+            chestButton.disabled = false;
+            
+            if (lastOpened !== today) {
+                localStorage.removeItem('chestOpen');
+                localStorage.removeItem('currentMessage');
+            }
         }
     }
-
-    chestButton.addEventListener('click', openChest);
+    
+    function showSavedMessage() {
+        const savedMessage = localStorage.getItem('currentMessage');
+        if (savedMessage) {
+            messageDisplay.textContent = savedMessage;
+            messageDisplay.classList.remove('hidden');
+            messageDisplay.classList.add('message-reveal');
+        }
+    }
 });
