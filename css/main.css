@@ -74,17 +74,18 @@ h1 {
     border-radius: 10px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
     text-align: center;
-    width: 220px; /* Keep this, but ensure it’s enough for the text */
+    width: 220px; /* Maintain this width, but we’ll ensure text fits */
     border: 2px solid #ff4e50;
-    font-size: 0.95rem;
-    line-height: 1.4;
+    font-size: 0.85rem; /* Reduced slightly to fit longer text better */
+    line-height: 1.3; /* Adjusted for tighter vertical spacing */
     pointer-events: none;
-    word-break: break-word; /* Already present, good for breaking words */
-    hyphens: auto; /* Already present, good for hyphenation */
-    overflow-wrap: break-word; /* Already present, ensures text wraps */
-    overflow: hidden; /* Prevents text from spilling out */
-    max-width: 220px; /* Ensures the box doesn’t expand beyond this */
-    white-space: normal; /* Ensures text doesn’t stay on a single line */
+    word-break: break-word;
+    hyphens: auto;
+    overflow-wrap: break-word;
+    overflow: hidden; /* Ensures no overflow */
+    white-space: normal;
+    max-width: 220px; /* Reinforces the maximum width */
+    min-height: 60px; /* Ensures enough vertical space for the text */
 }
 
 #chest-button {
