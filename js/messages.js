@@ -60,24 +60,3 @@ function getDailyMessage() {
     
     return loveMessages[selectedIndex];
 }
-
-// Function to get a random love message
-function getRandomLoveMessage() {
-    const messages = [
-        "I fall more in love with you every day.",
-        "You make my heart skip a beat.",
-        "Your smile brightens my darkest days.",
-        "I love you to the moon and back.",
-        "You are my sunshine on cloudy days.",
-        "Every moment with you is a blessing.",
-        "You are the best thing that ever happened to me.",
-        "My love for you grows stronger each day.",
-        "You mean the world to me.",
-        "I'm so grateful to have you in my life.",
-        "You are my favorite person to talk to.",
-        "I love your laugh and your smile.",
-        "Being with you feels like home."
-    ];
-    
-    return messages[Math.floor(Math.random() * messages.length)];
-}
