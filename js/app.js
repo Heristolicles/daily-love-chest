@@ -1,6 +1,23 @@
 // This file contains the main JavaScript code for the Daily Love Chest application.
 
 document.addEventListener('DOMContentLoaded', () => {
+    console.log("App.js loaded");
+    
+    // Initialize the UI based on whether the chest was opened today
+    const chestButton = document.getElementById('chest-button');
+    const messageDisplay = document.getElementById('message-display');
+    const chestImage = document.getElementById('chest');
+    
+    if (!canOpenChest()) {
+        // If the chest was already opened today, show the last message and opened chest
+        if (chestButton) chestButton.disabled = true;
+        if (messageDisplay) {
+            messageDisplay.textContent = "You've already opened your love chest today!";
+            messageDisplay.classList.remove('hidden');
+        }
+        if (chestImage) chestImage.src = "assets/chest-open.svg";
+    }
+
     // Debug which elements exist
     console.log("Elements check:", {
         chestButton: document.getElementById('chest-button'),
@@ -8,8 +25,6 @@ document.addEventListener('DOMContentLoaded', () => {
         chest: document.getElementById('chest')
     });
 
-    const chestButton = document.getElementById('chest-button');
-    const messageDisplay = document.getElementById('message-display');
     const lastOpenedDate = localStorage.getItem('lastOpenedDate');
     const today = new Date().toISOString().split('T')[0];
 
@@ -47,24 +62,18 @@ document.addEventListener('DOMContentLoaded', () => {
         return messages[Math.floor(Math.random() * messages.length)];
     }
 
-    // Line 13 that's causing the error - add a null check
-    const elementCausingError = document.getElementById('element-id-here'); // Replace with actual ID
-    if (elementCausingError) {
-        elementCausingError.disabled = true;
+    // Replace with this:
+    const elementToDisable = document.getElementById('your-element-id');
+    if (elementToDisable) {
+        elementToDisable.disabled = true;
     } else {
-        console.warn("Element not found in the DOM:", 'element-id-here');
-    }
-
-    // Check if the element exists before setting properties
-    const element = document.getElementById('your-element-id');
-    if (element) {
-        element.disabled = true; // or whatever you're trying to do
+        console.warn("Element not found: your-element-id");
     }
     
-    // Add console.log to debug which element is missing
-    console.log('Elements check:', {
-        button: document.getElementById('chest-button'),
-        message: document.getElementById('message-display'),
+    // Add debugging
+    console.log("Available elements:", {
+        chestButton: document.getElementById('chest-button'),
+        messageDisplay: document.getElementById('message-display'),
         chest: document.getElementById('chest')
     });
 });
