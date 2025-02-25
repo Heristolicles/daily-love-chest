@@ -11,6 +11,12 @@
               fill="#A0522D" 
               stroke="#3D2314" 
               stroke-width="1">
+            <animateTransform attributeName="transform"
+                              type="rotate"
+                              from="0 12 9"
+                              to="-110 12 9"
+                              dur="1.5s"
+                              fill="freeze"/>
         </path>
         
         <!-- Lock -->
