@@ -26,11 +26,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }
     
     function openChestWithAnimation() {
-        // Hide closed chest, show open chest
         chestClosed.classList.add('hidden');
         chestOpen.classList.remove('hidden');
         
-        // Wait for SVG to load then trigger animation
         chestOpen.addEventListener('load', function() {
             const openChestSvg = chestOpen.contentDocument;
             if (openChestSvg) {
@@ -40,39 +38,36 @@ document.addEventListener('DOMContentLoaded', () => {
                     
                     // Add sparkles with fixed positioning
                     setTimeout(() => {
-                        const sparklesContainer = document.createElement('div');
-                        sparklesContainer.className = 'sparkles';
-                        
                         const sparkles = document.createElement('object');
                         sparkles.setAttribute('type', 'image/svg+xml');
                         sparkles.setAttribute('data', 'assets/sparkles.svg');
-                        sparkles.className = 'sparkles-svg';
+                        sparkles.className = 'sparkles';
+                        chestContainer.appendChild(sparkles);
                         
-                        sparklesContainer.appendChild(sparkles);
-                        chestContainer.appendChild(sparklesContainer);
-                        
-                        // Add active class after a brief delay to trigger animation
-                        requestAnimationFrame(() => {
-                            sparklesContainer.classList.add('active');
+                        sparkles.addEventListener('load', () => {
+                            requestAnimationFrame(() => {
+                                sparkles.classList.add('active');
+                            });
                         });
                         
                         // Show message
                         setTimeout(() => {
                             const message = getDailyMessage();
-                            messageDisplay.textContent = message;
-                            messageDisplay.classList.remove('hidden');
-                            messageDisplay.classList.add('message-reveal');
-                            
-                            // Save state
-                            localStorage.setItem('lastOpenedDate', new Date().toDateString());
-                            localStorage.setItem('currentMessage', message);
-                            localStorage.setItem('chestOpen', 'true');
-                            
+                            if (message) {
+                                messageDisplay.textContent = message;
+                                messageDisplay.classList.remove('hidden');
+                                messageDisplay.classList.add('message-reveal');
+                                
+                                // Save state
+                                localStorage.setItem('lastOpenedDate', new Date().toDateString());
+                                localStorage.setItem('currentMessage', message);
+                                localStorage.setItem('chestOpen', 'true');
+                            }
                             // Update button state
                             chestButton.textContent = "Komm morgen wieder 😘";
                             chestButton.disabled = true;
                         }, 1500);
-                    }, 500); // Reduced from 1000 to 500
+                    }, 500);
                 }
             }
         });
