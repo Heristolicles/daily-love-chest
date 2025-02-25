@@ -46,6 +46,20 @@
     }
 }
 
+@keyframes floatHeart {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.8;
+    }
+    100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+
 .chest-opening {
     animation: openChest 1.5s ease-out forwards;
 }
@@ -68,4 +82,22 @@
 
 .hidden {
     display: none;
+}
+
+.hearts-background {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: -1;
+    overflow: hidden;
+}
+
+.heart {
+    position: fixed;
+    font-size: 20px;
+    color: rgba(255, 78, 80, 0.3);
+    animation: floatHeart 15s linear infinite;
 }
