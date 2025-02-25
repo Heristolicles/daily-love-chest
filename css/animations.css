@@ -35,6 +35,17 @@
     }
 }
 
+@keyframes messageReveal {
+    0% {
+        opacity: 0;
+        transform: translateY(10px) translate(-50%, -50%);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0) translate(-50%, -50%);
+    }
+}
+
 .chest-opening {
     animation: openChest 1.5s ease-out forwards;
 }

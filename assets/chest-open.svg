@@ -3,26 +3,19 @@
     <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" fill="#8B4513" stroke="#3D2314"/>
     
     <!-- Animated Lid -->
-    <g>
-        <path d="M3 9l2.5-4h13L21 9" fill="#A0522D" stroke="#3D2314">
-            <animate id="chest-trigger"
-                    attributeName="transform"
-                    type="rotate"
-                    from="0 12 9"
-                    to="-110 12 9"
-                    dur="1s"
-                    fill="freeze"
-                    begin="indefinite"/>
-        </path>
-        <!-- Lock -->
-        <rect x="10" y="10" width="4" height="2" fill="#FFD700" stroke="#B8860B">
-            <animate attributeName="transform"
-                    type="rotate"
-                    from="0 12 9"
-                    to="-110 12 9"
-                    dur="1s"
-                    fill="freeze"
-                    begin="chest-trigger.begin"/>
-        </rect>
+    <g id="lid">
+        <path d="M3 9l2.5-4h13L21 9" fill="#A0522D" stroke="#3D2314"/>
+        <rect x="10" y="10" width="4" height="2" fill="#FFD700" stroke="#B8860B"/>
     </g>
+
+    <animateTransform
+        id="chest-trigger"
+        xlink:href="#lid"
+        attributeName="transform"
+        type="rotate"
+        from="0 12 9"
+        to="-110 12 9"
+        dur="1s"
+        fill="freeze"
+        begin="indefinite"/>
 </svg>
