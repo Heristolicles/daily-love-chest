@@ -100,7 +100,20 @@ document.addEventListener('DOMContentLoaded', () => {
             chestButton.textContent = "Open Chest";
         }
     }
+    // Function to show the saved message if available
+    function showSavedMessage() {
+        try {
+            const savedMessage = localStorage.getItem('currentMessage');
+            if (savedMessage) {
+                displayMessage(savedMessage);
+            }
+        } catch (error) {
+            console.error('Error accessing saved message:', error);
+        }
+    }
     
+
+
     function showSavedMessage() {
         try {
             const savedMessage = localStorage.getItem('currentMessage');
