@@ -42,9 +42,6 @@ h1 {
 #chest-container {
     position: relative;
     perspective: 1000px;
-    width: 200px;
-    height: 160px;
-    margin: 0 auto 30px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -53,41 +50,11 @@ h1 {
 }
 
 #chest {
-    position: relative;
-    width: 100%;
-    height: 100%;
+    width: 120px;
+    height: 120px;
     transform-style: preserve-3d;
     transition: transform 0.5s ease;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: #8B4513; /* For the SVG currentColor */
-}
-
-#chest img {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#chest object {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#chest-open {
-    opacity: 1;
-    transition: opacity 0.3s ease;
-}
-
-#chest-svg {
-    width: 100%;
-    height: 100%;
 }
 
 .chest:hover {
@@ -157,7 +124,7 @@ h1 {
 }
 
 .hidden {
-    display: none !important;
+    display: none;
 }
 
 /* Add styling for the sparkles */
@@ -165,13 +132,9 @@ h1 {
     position: absolute;
     width: 100%;
     height: 100%;
-    top: 0; /* Adjusted to cover the entire container */
-    left: 0; /* Adjusted to cover the entire container */
-    transform: translate(0, 0); /* Adjusted to cover the entire container */
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
     pointer-events: none;
     z-index: 5;
-}
-
-.message-reveal {
-    animation: messageReveal 1s ease-out forwards;
 }

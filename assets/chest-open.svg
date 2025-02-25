@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <svg xmlns="http://www.w3.org/2000/svg" width="200" height="160" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
     <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" fill="#8B4513" stroke="#3D2314"/>
     <g transform-origin="12 9">
@@ -23,4 +24,52 @@
                     begin="chest-trigger.begin"/>
         </rect>
     </g>
+=======
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="160" viewBox="0 0 24 24">
+    <!-- Chest base -->
+    <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" 
+          fill="#8B4513" 
+          stroke="#3D2314" 
+          stroke-width="1"/>
+    
+    <!-- Chest lid (hinged at back) -->
+    <g transform-origin="12 9">
+        <path d="M3 9l2.5-4h13L21 9" 
+              fill="#A0522D" 
+              stroke="#3D2314" 
+              stroke-width="1">
+        </path>
+        
+        <!-- Lock -->
+        <rect x="10" y="7" 
+              width="4" height="2" 
+              fill="#FFD700" 
+              stroke="#B8860B"/>
+    </g>
+    
+    <!-- Glowing interior -->
+    <rect x="4" y="10" 
+          width="16" height="9" 
+          fill="#FFFFE0" 
+          opacity="0.3">
+        <animate attributeName="opacity" 
+                 values="0.3;0.5;0.3" 
+                 dur="2s" 
+                 repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Animated Heart -->
+    <path d="M12 15.5 C11 12 8 12 8 14 C8 16 12 18 12 18 C12 18 16 16 16 14 C16 12 13 12 12 15.5" 
+          fill="#FF69B4" 
+          stroke="#FF1493">
+        <animate attributeName="fill" 
+                 values="#FF69B4;#FF1493;#FF69B4" 
+                 dur="2s" 
+                 repeatCount="indefinite"/>
+        <animate attributeName="transform" 
+                 values="scale(1);scale(1.1);scale(1)" 
+                 dur="2s" 
+                 repeatCount="indefinite"/>
+    </path>
+>>>>>>> 276c5de (1.0)
 </svg>
