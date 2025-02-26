@@ -5,6 +5,19 @@ const loveMessages = [
     "Du bist mein Ein und Alles!",
     "Du bist wundervoll!",
     "Du bist mein Sonnenschein!",
+    "Du bist die schönste Frau der Welt!",
+    "Du hast sooo tolle Haare!",
+    "Fabi und Benni sind ein tolles Team!",
+    "Wir passen soooo gut zusammen!",
+    "Ich kann nicht genug von dir bekommen!",
+    "Ich liebe dich so wie du bist!",
+    "Mein Herz gehört dir!",
+    "Wir tanzen genauso toll wie die in Dirty Dancing!",
+    "Deine Haut ist so weich und schön. Ich liebe sie zu streicheln!",
+    "Du bist so süß!",
+    "Du bist so sexy!",
+    "Wir fahren zusammen in den Urlaub!",
+    "Die Zeit mit dir ist so schön!",
 ];
 
 // Helper function to get the last message index from localStorage
