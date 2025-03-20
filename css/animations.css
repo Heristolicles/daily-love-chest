@@ -1,12 +1,35 @@
 @keyframes openChest {
     0% {
-        transform: perspective(800px) rotateX(0);
-        transform-origin: center top;
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-8px);
+    }
+    60% {
+        transform: translateY(-7px);
     }
     100% {
-        transform: perspective(800px) rotateX(-110deg);
-        transform-origin: center top;
+        transform: translateY(-7.5px);
     }
+}
+
+/* Target the lid group directly from the SVG structure */
+.chest-opening #chest-open #lid,
+.chest-opening svg #lid,
+.chest-opening #lid {
+    transform-origin: center bottom;
+    animation: openChest 1.5s ease-out forwards;
+}
+
+/* Add some dramatic effects to make the animation more noticeable */
+.chest-opening #lid path,
+.chest-opening #lid rect {
+    fill: #a87954; /* Ensure the lid color is visible */
+}
+
+.chest-opening #lid #heart,
+.chest-opening #lid .heart {
+    fill: #ff4e50; /* Make the heart color vibrant */
 }
 
 @keyframes fadeIn {
@@ -48,13 +71,103 @@
     }
 }
 
-.chest-opening {
-    animation: openChest 1.5s ease-out forwards;
+/* New pulse animation for special messages */
+@keyframes messagePulse {
+    0% {
+        box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    }
+    50% {
+        box-shadow: 0 0 20px rgba(255, 105, 180, 0.8);
+    }
+    100% {
+        box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    }
+}
+
+/* Floating hearts animation */
+@keyframes floatingHeart {
+    0% {
+        opacity: 0;
+        transform: translateY(0) rotate(0deg);
+    }
+    20% {
+        opacity: 1;
+    }
+    80% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-100px) rotate(360deg);
+    }
+}
+
+/* Button press animation */
+@keyframes buttonPress {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Heartbeat animation for background hearts */
+@keyframes heartbeat {
+    0% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    25% {
+        transform: scale(1.1);
+        opacity: 0.3;
+    }
+    50% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+    75% {
+        transform: scale(1.1);
+        opacity: 0.3;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0.2;
+    }
+}
+
+/* Floating background heart animation */
+@keyframes floatingBackgroundHeart {
+    0% {
+        opacity: 0;
+        bottom: -20px;
+    }
+    20% {
+        opacity: 0.8;
+    }
+    80% {
+        opacity: 0.8;
+    }
+    100% {
+        opacity: 0;
+        bottom: 100vh;
+    }
 }
 
 .message-reveal {
     animation: messageReveal 1s ease-out forwards;
     width: 250px !important; /* Ensure width is maintained during animation */
+}
+
+/* Special message styling */
+.special-message {
+    color: #ff1493;
+    font-weight: bold;
+    border: 2px solid #ff69b4 !important;
+    background-color: rgba(255, 255, 255, 0.95);
 }
 
 .sparkles {
@@ -67,6 +180,20 @@
 
 .sparkles.active {
     animation: sparkle 2s ease-out forwards;
+}
+
+/* Floating heart animation */
+.floating-heart {
+    position: absolute;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 20;
+    animation: floatingHeart 5s ease-out forwards;
+}
+
+/* Button press animation class */
+.button-pressed {
+    animation: buttonPress 0.3s ease-out;
 }
 
 .hidden {
@@ -88,4 +215,12 @@
     position: fixed;
     font-size: 20px;
     color: rgba(255, 78, 80, 0.3);
+}
+
+.floating-background-heart {
+    position: fixed;
+    bottom: -20px;
+    pointer-events: none;
+    animation: floatingBackgroundHeart 10s ease-out forwards;
+    z-index: -1;
 }

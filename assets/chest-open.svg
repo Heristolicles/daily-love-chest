@@ -1,29 +1,61 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24">
-    <!-- Base with inner glow -->
-    <g id="base">
-        <path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9z" fill="#8B4513" stroke="#3D2314"/>
-        <!-- Inner glow -->
-        <path d="M4 10h16v8a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1v-8z" fill="#FFD700" opacity="0.2">
-            <animate attributeName="opacity" values="0.2;0.4;0.2" dur="2s" repeatCount="indefinite"/>
-        </path>
-    </g>
+<svg xmlns="http://www.w3.org/2000/svg" width="180" height="180" viewBox="0 0 100 100">
+  <style>
+    @keyframes openLid {
+      0% { transform: translateY(0); }
+      40% { transform: translateY(-8px); }
+      60% { transform: translateY(-7px); }
+      100% { transform: translateY(-7.5px); }
+    }
+    #lid {
+      transform-origin: center bottom;
+    }
+    .animate-lid {
+      animation: openLid 1.5s ease-out forwards;
+    }
+  </style>
+  
+  <!-- Static base of the chest -->
+  <g id="base">
+    <!-- Chest base -->
+    <rect x="15" y="40" width="70" height="45" rx="5" ry="5" fill="#8e5e3f" stroke="#5d341f" stroke-width="2"/>
     
-    <!-- Animated Lid Group -->
-    <g id="lid">
-        <!-- Lid -->
-        <path d="M3 9l2.5-4h13L21 9" fill="#A0522D" stroke="#3D2314"/>
-        <!-- Lock -->
-        <rect x="10" y="10" width="4" height="2" fill="#FFD700" stroke="#B8860B"/>
-        
-        <!-- Animation for the lid -->
-        <animateTransform
-            id="chest-trigger"
-            attributeName="transform"
-            type="translate"
-            from="0 0"
-            to="0 -4"
-            dur="0.5s"
-            fill="freeze"
-            begin="indefinite"/>
-    </g>
+    <!-- Decorative elements on chest -->
+    <rect x="20" y="50" width="60" height="25" rx="2" ry="2" fill="#a87954" stroke="#5d341f" stroke-width="1"/>
+    
+    <!-- Chest interior glow - to show magical contents -->
+    <rect x="25" y="55" width="50" height="15" rx="1" ry="1" fill="#fdf2b3" stroke="#aa8c30" stroke-width="1" opacity="0.9">
+      <animate attributeName="opacity" values="0.7;0.9;0.7" dur="2s" repeatCount="indefinite"/>
+    </rect>
+    
+    <!-- Gold trim -->
+    <rect x="15" y="40" width="70" height="5" fill="#d4af37" stroke="#aa8c30" stroke-width="1"/>
+    <rect x="15" y="80" width="70" height="5" fill="#d4af37" stroke="#aa8c30" stroke-width="1"/>
+    
+    <!-- Small decorative elements -->
+    <circle cx="30" cy="70" r="3" fill="#d4af37" stroke="#aa8c30" stroke-width="1"/>
+    <circle cx="70" cy="70" r="3" fill="#d4af37" stroke="#aa8c30" stroke-width="1"/>
+  </g>
+  
+  <!-- Chest lid (separate group for animation) -->
+  <g id="lid" class="animate-lid">
+    <!-- Main lid shape -->
+    <path d="M15,40 L15,25 C15,20 20,15 25,15 L75,15 C80,15 85,20 85,25 L85,40 Z" fill="#a87954" stroke="#5d341f" stroke-width="2"/>
+    
+    <!-- Lid decorative elements -->
+    <path d="M20,40 L20,30 C20,25 25,20 30,20 L70,20 C75,20 80,25 80,30 L80,40 Z" fill="#8e5e3f" stroke-width="0"/>
+    <path d="M25,40 L25,35 C25,30 30,25 35,25 L65,25 C70,25 75,30 75,35 L75,40 Z" fill="#d4af37" stroke="#aa8c30" stroke-width="1" opacity="0.6"/>
+    
+    <!-- Heart lock - cute, nicely shaped heart -->
+    <path d="M50,35 
+             C50,35 45,25 40,25 
+             C33,25 33,35 40,40 
+             C45,45 50,50 50,50 
+             C50,50 55,45 60,40 
+             C67,35 67,25 60,25 
+             C55,25 50,35 50,35 Z" 
+          fill="#ff4e50" stroke="#c83536" stroke-width="1"/>
+    
+    <!-- Keyhole -->
+    <circle cx="50" cy="30" r="2" fill="#5d341f"/>
+  </g>
 </svg>
